@@ -6,6 +6,7 @@
         Task<List<PostResponse>> GetAllPostsAsync();
         Task<PostResponse?> GetPostByPostIdAsync(int postId);
         Task<List<PostResponse?>> GetAllPostsByUserIdAsync(int userId);
+        //Task<List<TagResponseFull>> GetAllPostsByTagIdAsync(int tagId);
         Task<PostResponse> CreatePostAsync(PostRequest newPost);
         Task<PostResponse> UpdatePostAsync(int postId, PostUpdateRequest updatePost);
         Task<PostResponse?> DeletePostAsync(int postId);

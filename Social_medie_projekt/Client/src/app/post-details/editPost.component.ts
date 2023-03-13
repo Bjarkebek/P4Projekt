@@ -173,10 +173,19 @@ export class EditPostComponent {
     this.insertValues()
   }
 
+  // insertValues(){
+  //   (<HTMLInputElement>document.getElementById("title")).value = this.post.title;
+  //   (<HTMLInputElement>document.getElementById("content")).value = this.post.desc;
+  //   (<HTMLInputElement>document.getElementById("tags")).value = this.post.tags!.tagName;
+  // }
+
   insertValues(){
     (<HTMLInputElement>document.getElementById("title")).value = this.post.title;
     (<HTMLInputElement>document.getElementById("content")).value = this.post.desc;
-    (<HTMLInputElement>document.getElementById("tags")).value = this.post.tags;
+    const tagsInput = document.getElementById("tags") as HTMLInputElement;
+
+    const tagNames = this.post.tags?.map(tag => tag.name);
+    tagsInput.value = tagNames ? tagNames.join(', ') : '';
   }
 
   edit(){
@@ -217,7 +226,7 @@ export class EditPostComponent {
   }
 
   resetPost():Post {
-    return{ postId: 0, title: '', desc: '', tags: '' }
+    return{ postId: 0, title: '', desc: '', tags: [{ name: '', tagId: 0 }]}
   }
 
   resetForm(){

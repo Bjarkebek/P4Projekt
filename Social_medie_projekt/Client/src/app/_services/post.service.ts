@@ -30,6 +30,10 @@ export class PostService {
     return this.http.get<Post[]>(`${this.apiUrl}/user/${userid}`)
   }
 
+  // GetPostByTagId(tagId: number): Observable<Post[]>{
+  //   return this.http.get<Post[]>(`${this.apiUrl}/tag/${tagId}`)
+  // }
+
   // Opretter et post
   createPost(post: Post){
     return this.http.post<Post>(this.apiUrl, post)

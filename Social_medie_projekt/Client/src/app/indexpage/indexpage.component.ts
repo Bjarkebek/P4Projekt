@@ -20,8 +20,16 @@ import { Tag } from '../_models/tags';
     </h5>
     <h1 id="title">{{post.title}}</h1>
     <h3 id="description">{{post.desc}}</h3>
-    <!-- <p id="tags" *ngFor="let tag of tags">#{{tag.tag}}, </p> -->
-    <p id="tags" *ngIf="post.tags">#{{post.tags}}, </p>
+
+    <div id="postTags" *ngIf="post.tags">
+      <!-- {{log(post.tags)}} -->
+      <p id="tag" *ngFor="let tag of post.tags">
+        <!-- {{log(tag.name)}} -->
+        {{tag.name}}
+      </p>
+    </div>
+
+    <!-- <p id="tags" *ngIf="post.tags">#{{post.tags}}, </p> -->
     <p id="date">{{post.date | date:'MMM d yyyy, HH:mm a'}}</p> 
     <button class="postBtn" id="like"><3</button>
   </div>
@@ -31,8 +39,16 @@ import { Tag } from '../_models/tags';
   
 })
 export class IndexpageComponent {
-
   posts: Post[] = [];
+  //jsonString: string;
+  tags: Tag[];
+  //tag: Tag = { tagId: 0, tagName: '' };
+
+  log(val: any) 
+  {
+    console.log(val);
+  }
+
   // post: Post = {
   //   postId: 0,
   //   title: '',
@@ -52,17 +68,21 @@ export class IndexpageComponent {
   //   posts: []}
   // }
 
-  tags: Tag[] = []
-  tag: Tag= { tagId: 0, tag: '' }
-
   constructor(
     private postService: PostService,
     private auth: AuthService
   )
-  { }
+  {
+    this.tags = [];
+    //this.jsonString = JSON.stringify(this.tags.map(tag => tag.tagName));
+  }
 
   ngOnInit(): void {
     this.postService.getAll().subscribe(x => this.posts = x)
   }
+
+  // toArray(tags: object) {
+  //   return Object.keys(tags).map(key => tags[key])
+  // }
 
 }

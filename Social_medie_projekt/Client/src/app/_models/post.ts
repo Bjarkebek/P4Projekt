@@ -7,8 +7,8 @@ export interface Post {
     postId: number;
     title: string;
     desc: string;
-    tags: string;
     likes?: number;
     date?: Date;
     user?: User;
+    tags?: Tag[];
 }

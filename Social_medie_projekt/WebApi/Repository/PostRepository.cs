@@ -7,6 +7,7 @@
         Task<List<Post>> GetAllAsync();
         Task<Post?> GetPostByPostIdAsync(int PostId);
         Task<List<Post?>> GetAllPostsByUserIdAsync(int UserId);
+        //Task<List<Post>> GetAllPostByTagIdAsync(int tagId);
         Task<Post> CreatePostAsync(Post newPost);
         Task<Post> DeletePostAsync(int id);
         Task<Post> UpdatePostAsync(int id, Post updatePost);
@@ -26,6 +27,7 @@
 
         // POSTTAGS
         Task<List<PostTag>> GetPostTagsByPostId(int postId);
+        //Task<List<PostTag>> GetPostTagsByTagId(int tagId);
         Task<PostTag> CreatePostTagAsync(PostTag newPostsTag);
         Task<PostTag> DeletePostTagAsync(PostTag newPostsTag);
         Task<PostTag> UpdatePostTagAsync(PostTag newPostsTag);
@@ -56,6 +58,11 @@
         {
             return await _context.Post.Include(c => c.User).Where(x => userId == x.UserId).ToListAsync();
         }
+
+        //public async Task<List<Post?>> GetAllPostsByTagIdAsync(int tagId)
+        //{
+        //    return await _context.Post.Include(c => c.User).Where(x => userId == x.UserId).ToListAsync();
+        //}
 
         public async Task<Post> CreatePostAsync(Post newPost)
         {

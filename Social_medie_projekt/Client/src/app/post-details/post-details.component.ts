@@ -3,6 +3,7 @@ import { AuthService } from '../_services/auth.service';
 import { ActivatedRoute } from '@angular/router';
 import { PostService } from '../_services/post.service';
 import { Post } from '../_models/post';
+import { Tag } from '../_models/tags';
 
 @Component({
   selector: 'app-post-details',
@@ -13,8 +14,11 @@ import { Post } from '../_models/post';
     <h5 id="username">{{post.user?.userName}}</h5>
     <h1 id="title">{{post.title}}</h1>
     <h3 id="description">{{post.desc}}</h3>
-    <!-- <p id="tags" *ngFor="let tag of tags">#{{tag.tag}}, </p> -->
-    <h6 id="tags">#{{post.tags}}, </h6>
+    <!-- <div id="tags" *ngFor="let tag of post.tags">
+      #{{post.tags}}, 
+    </div> -->
+    <!-- <h6 id="tags">#{{post.tags}}, </h6> -->
+    <h6 id="tags" *ngIf="post.tags">#{{post.tags}}, </h6>
     <p id="date">{{post.date | date:'MMM d yyyy, HH:mm a'}}</p> 
     <button class="postBtn" id="like"><3</button>
   </div>
@@ -30,7 +34,10 @@ export class PostDetailsComponent {
     userId:0,
     title: '',
     desc: '',
-    tags: '',
+    tags: [{
+      name: '',
+      tagId: 0,
+    }],
     likes: 0, 
     date: new Date,
     user: {
